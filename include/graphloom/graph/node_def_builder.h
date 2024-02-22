@@ -107,7 +107,7 @@ namespace graphloom
         void Reset();
 
         /**
-         * @param graph The graph to build the node into
+         * @param graph The graph to build the node into. Graph must outlive builder
          * @param op_name Name of the op this node represents
          * @param device Name of the device the op runs on 
         */

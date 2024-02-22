@@ -131,7 +131,8 @@ namespace graphloom
         const std::string& op_name, 
         const std::string& device) : 
         op_(OpRegistry::instance().GetOp(op_name)),
-        graph_(graph)
+        graph_(graph),
+        device_(device)
     {
         if (!DeviceRegistry::instance().HasDevice(device_))
         {

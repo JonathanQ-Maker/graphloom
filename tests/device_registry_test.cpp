@@ -57,16 +57,8 @@ TEST(DeviceRegistrySuite, Devices)
 
 TEST(DeviceRegistrySuite, DuplicateName)
 {
-    try
-    {
-        // Should fail and throw exception due to duplicate device type name
-        RegisterDevice<CpuFactory>().Register("TEST_CPU");
-        FAIL() << "Expected a GlException to be thrown, but got none";
-    }
-    catch(const GlException& e)
-    {
-        // success
-    }
+    // Should fail and throw exception due to duplicate device type name
+    EXPECT_THROW(RegisterDevice<CpuFactory>().Register("TEST_CPU"), GlException);
 }
 
 int main(int argc, char **argv) 

@@ -28,6 +28,11 @@ namespace graphloom
         return attributes_.find(path) != attributes_.end();
     }
 
+    size_t GraphDef::num_nodes() const
+    {
+        return nodes_.size();
+    }
+
     int32_t GraphDef::GetInt32Attr(const std::string& path) const
     {
         return std::any_cast<int32_t>(attributes_.at(path));

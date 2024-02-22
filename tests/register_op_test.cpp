@@ -43,9 +43,8 @@ TEST(RegisterOpSuite, ValidTestOp)
 TEST(RegisterOpSuite, InvalidAttr)
 {
     std::string op_name("test_op2");
-    try
-    {
-        OpBuilder(op_name).
+
+    EXPECT_THROW(OpBuilder(op_name).
             Input().
             Input().
             Attribute("A1").
@@ -53,29 +52,16 @@ TEST(RegisterOpSuite, InvalidAttr)
             Output([](const ComputeContext& c, LayoutArray& shape){
                 shape = {3, 5};
                 return Status::kOK;
-            }).Build();
-        FAIL() << "Expected GL_REGISTER_OP to throw an expection, but none recived.";
-    }
-    catch(const GlException& e)
-    {
-        // success
-        EXPECT_FALSE(OpRegistry::instance().HasOp(op_name))
-            << "Expected op to fail to register, instead op exists in registry";
-    }
+            }).Build(), GlException);
+
+    EXPECT_FALSE(OpRegistry::instance().HasOp(op_name))
+        << "Expected op to fail to register, instead op exists in registry";
 }
 
 TEST(RegisterOpSuite, DuplicateOpName)
 {
-    std::string op_name("test_op");
-    try
-    {
-        OpBuilder(op_name).Build();
-        FAIL() << "Expected GL_REGISTER_OP to throw an expection, but none recived.";
-    }
-    catch(const GlException& e)
-    {
-        // success
-    }
+    // Should fail and throw due to duplicate name
+    EXPECT_THROW(OpBuilder("test_op").Build(), GlException);    
 }
 
 int main(int argc, char **argv) 

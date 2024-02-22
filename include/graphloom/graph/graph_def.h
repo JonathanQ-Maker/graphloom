@@ -56,6 +56,31 @@ namespace graphloom
         bool HasAttr(const std::string& path) const;
 
         /**
+         * @returns Number of nodes in this graph
+        */
+        size_t num_nodes() const;
+
+        /**
+         * Search for a node. O(n) complexity
+         * 
+         * @param name Node's name, case-sensitive
+         * @returns The node if found, nullptr otherwise 
+        */
+        NodeDef* FindNode(const std::string& name) const;
+
+        /**
+         * Checks if node is a "valid" node.
+         * 
+         * A node is valid if:
+         *  not nullptr
+         *  exists in this graph
+         * 
+         * @param node Node to check
+         * @returns Node validity
+        */
+        bool IsValidNode(const NodeDef* node) const;
+
+        /**
          * Returns the Attribute at path
          * 
          * @param path Absolute path
@@ -98,26 +123,6 @@ namespace graphloom
     private:
         friend class NodeDefBuilder;
         friend class GraphFactory;
-
-        /**
-         * Search for a node. O(n) complexity
-         * 
-         * @param name Node's name, case-sensitive
-         * @returns The node if found, nullptr otherwise 
-        */
-        NodeDef* FindNode(const std::string& name) const;
-
-        /**
-         * Checks if node is a "valid" node.
-         * 
-         * A node is valid if:
-         *  not nullptr
-         *  exists in this graph
-         * 
-         * @param node Node to check
-         * @returns Node validity
-        */
-        bool IsValidNode(const NodeDef* node) const;
         
         std::vector<NodeDef*> nodes_; 
         std::unordered_set<EdgeDef*> edges_;

@@ -22,6 +22,7 @@ set(testFiles
     data_type_test.cpp
     device_cpu_test.cpp
     device_registry_test.cpp
+    node_def_builder_test.cpp
     register_op_test.cpp
     status_test.cpp
 )
