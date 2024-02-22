@@ -1,0 +1,12 @@
+# ignore everything
+/*
+
+# items to include
+!.gitignore
+!include
+!src
+!tests
+!CMakeLists.txt
+!README.md
+!docs
+!scripts
