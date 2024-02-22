@@ -21,6 +21,7 @@ namespace graphloom
         nodes_.clear();
         edges_.clear();
         attributes_.clear();
+        source_nodes_.clear();
     }
 
     bool GraphDef::HasAttr(const std::string& path) const
@@ -72,7 +73,7 @@ namespace graphloom
     bool GraphDef::IsValidNode(const NodeDef* node) const
     {
         if (node == nullptr) return false;
-        if (node->id() < 0) return false;
+        if (node->id() < 0 || node->id() >= nodes_.size()) return false;
         return node == nodes_[node->id()];
     }
 

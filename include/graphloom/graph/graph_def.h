@@ -124,8 +124,11 @@ namespace graphloom
         friend class NodeDefBuilder;
         friend class GraphFactory;
         
-        std::vector<NodeDef*> nodes_; 
+        std::vector<NodeDef*> nodes_;
         std::unordered_set<EdgeDef*> edges_;
+
+        // Set of nodes without inputs
+        std::set<NodeDef*> source_nodes_;
         
         // Map of absolute path to attributes
         std::unordered_map<std::string, std::any> attributes_; 

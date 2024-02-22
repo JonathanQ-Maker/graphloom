@@ -64,7 +64,7 @@ namespace graphloom
         {
             name = base_name;
             name += ":";
-            name += i;
+            name += std::to_string(i);
         }
         return name;
     }

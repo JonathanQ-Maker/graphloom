@@ -30,10 +30,10 @@ namespace graphloom
     public:
 
         /**
-         * Add an input node for this node.
+         * Add an input node for this node. Order matters.
          * 
          * @param src_node The input node. Required to be from the same graph
-         * @param src_id Tndex/id of output to connect to this node
+         * @param src_id Index/id of output to connect to this node
          * @returns This builder
         */
         NodeDefBuilder& Input(NodeDef* src_node, size_t src_id);

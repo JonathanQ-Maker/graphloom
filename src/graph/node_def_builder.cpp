@@ -95,7 +95,7 @@ namespace graphloom
         std::string name = GenUniqueNodeName(name_);
         NodeDef* node = new NodeDef(op_, name, device_);
         AddNode(node);
-        node->out_dtypes_ = std::move(dtypes);
+        node->out_dtypes_ = dtypes;
 
         // build input edges
         for (int i = 0; i < op_.num_inputs(); ++i)
@@ -152,6 +152,10 @@ namespace graphloom
 
     void NodeDefBuilder::AddNode(NodeDef* node)
     {
+        if (node->op().num_inputs() == 0)
+        {
+            graph_.source_nodes_.insert(node);
+        }
         node->id_ = graph_.nodes_.size();
         graph_.nodes_.push_back(node);
     }
@@ -163,7 +167,7 @@ namespace graphloom
         {
             name = base_name;
             name += "_";
-            name += i;
+            name += std::to_string(i);
         }
         return name;
     }
